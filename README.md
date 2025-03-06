@@ -10,7 +10,7 @@ Features
 5.	Seamless Human Handoff: Transfers complex issues to human agents when required.
 6.	Multi-Language Support: Communicates in different languages to cater to a diverse customer base.
 7.	Secure Transactions: Ensures secure handling of customer data and transactions.
-8.	
+	
 Installation
 1.	Clone the repository: 
 2.	git clone 
