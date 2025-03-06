@@ -14,7 +14,7 @@ Features
 
 Installation
 1.	Clone the repository: 
-2.	git clone https://github.com/your-repo/ai-chatbot.git
+2.	git clone
 3.	Navigate to the project directory: 
 4.	cd ai-chatbot
 5.	Install dependencies: 
