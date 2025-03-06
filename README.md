@@ -35,4 +35,4 @@ Future Enhancements
 4.	AR/VR Integration: Provide interactive shopping assistance using AR/VR technology.
 5.	Omni-Channel Support: Extend chatbot capabilities to social media, WhatsApp, and other platforms.
 6.	AI Self-Learning: Improve chatbot responses through machine learning and real-time feedback.
-7.	Blockchain for Security: Enhance transaction security using blockchain technology.
+
