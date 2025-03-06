@@ -23,17 +23,17 @@ Installation
 8.	python chatbot.py
    
 Technology Stack
-•	Programming Language: Python
-•	Framework: Flask / Django (for API handling)
-•	NLP Engine: OpenAI GPT / Dialogflow / Rasa
-•	Database: MongoDB / Firebase / MySQL
-•	Cloud Integration: AWS / Google Cloud / Azure
+1	Programming Language: Python
+2	Framework: Flask / Django (for API handling)
+3	NLP Engine: OpenAI GPT / Dialogflow / Rasa
+4	Database: MongoDB / Firebase / MySQL
+5	Cloud Integration: AWS / Google Cloud / Azure
 
 Future Enhancements
-•	Advanced Personalization: Implement AI-driven behavior analysis for more precise recommendations.
-•	Voice Support: Enable voice interactions alongside text-based chat.
-•	Sentiment Analysis: Integrate sentiment detection to better understand customer emotions.
-•	AR/VR Integration: Provide interactive shopping assistance using AR/VR technology.
-•	Omni-Channel Support: Extend chatbot capabilities to social media, WhatsApp, and other platforms.
-•	AI Self-Learning: Improve chatbot responses through machine learning and real-time feedback.
-•	Blockchain for Security: Enhance transaction security using blockchain technology.
+1	Advanced Personalization: Implement AI-driven behavior analysis for more precise recommendations.
+2	Voice Support: Enable voice interactions alongside text-based chat.
+3	Sentiment Analysis: Integrate sentiment detection to better understand customer emotions.
+4	AR/VR Integration: Provide interactive shopping assistance using AR/VR technology.
+5	Omni-Channel Support: Extend chatbot capabilities to social media, WhatsApp, and other platforms.
+6	AI Self-Learning: Improve chatbot responses through machine learning and real-time feedback.
+7	Blockchain for Security: Enhance transaction security using blockchain technology.
