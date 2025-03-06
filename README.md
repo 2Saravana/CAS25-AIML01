@@ -24,7 +24,7 @@ Installation
    
 Technology Stack
 1	Programming Language: Python
-2	Framework: Flask / Django (for API handling)
+Framework: Flask / Django (for API handling)
 3	NLP Engine: OpenAI GPT / Dialogflow / Rasa
 4	Database: MongoDB / Firebase / MySQL
 5	Cloud Integration: AWS / Google Cloud / Azure
