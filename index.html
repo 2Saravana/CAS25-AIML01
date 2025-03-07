@@ -7,73 +7,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
-        body {
-            background-color: #eef1f6;
-            font-family: Arial, sans-serif;
-        }
+        body { background-color: #eef1f6; font-family: Arial, sans-serif; }
         .chatbot-icon {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #007bff;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            font-size: 24px;
+            position: fixed; bottom: 20px; right: 20px; background: #007bff; color: white;
+            width: 60px; height: 60px; border-radius: 50%; display: flex;
+            justify-content: center; align-items: center; cursor: pointer;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); font-size: 24px;
         }
         .chat-container {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            width: 350px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            display: none;
-            flex-direction: column;
-            max-height: 400px;
-            overflow: hidden;
-            padding: 10px;
+            position: fixed; bottom: 90px; right: 20px; width: 350px; background: white;
+            border-radius: 15px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            display: none; flex-direction: column; max-height: 400px; overflow: hidden; padding: 10px;
         }
-        .chat-header {
-            background: #007bff;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-        }
-        .chat-box {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            background: #fff;
-        }
-        .chat-message {
-            margin-bottom: 10px;
-            padding: 8px;
-            border-radius: 10px;
-            max-width: 75%;
-            word-wrap: break-word;
-        }
-        .user-message {
-            background: #007bff;
-            color: white;
-            text-align: right;
-        }
-        .bot-message {
-            background: #e9ecef;
-            color: black;
-        }
+        .chat-header { background: #007bff; color: white; padding: 10px; text-align: center; }
+        .chat-box { flex: 1; padding: 15px; overflow-y: auto; background: #fff; }
+        .chat-message { margin-bottom: 10px; padding: 8px; border-radius: 10px; max-width: 75%; word-wrap: break-word; }
+        .user-message { background: #007bff; color: white; text-align: right; }
+        .bot-message { background: #e9ecef; color: black; }
         .loader {
             display: none;
-            margin: auto;
+            margin: 10px auto;
             width: 30px;
             height: 30px;
             border: 4px solid #ccc;
@@ -99,31 +52,32 @@
             <button class="btn btn-secondary flex-fill" onclick="startVoiceRecognition()">🎤 Speak</button>
             <button class="btn btn-danger flex-fill" onclick="clearChat()">Clear</button>
         </div>
+        <input type="file" id="fileUpload" class="form-control mt-2" accept="image/*, .pdf, .txt" onchange="handleFileUpload(event)">
     </div>
     
     <script>
+        let chatMemory = [];
+        
         function toggleChatbot() {
             const chatContainer = document.getElementById("chatContainer");
             chatContainer.style.display = chatContainer.style.display === "none" || chatContainer.style.display === "" ? "flex" : "none";
         }
 
         function handleKeyPress(event) {
-            if (event.key === 'Enter') {
-                sendMessage();
-            }
+            if (event.key === 'Enter') sendMessage();
         }
-        
+
         function clearChat() {
             document.getElementById("chatBox").innerHTML = "";
+            chatMemory = [];
         }
-        
+
         async function sendMessage() {
             const input = document.getElementById('userInput').value;
             if (!input) return;
             
             const chatBox = document.getElementById('chatBox');
             const loader = document.getElementById('loader');
-
             chatBox.innerHTML += `<div class='chat-message user-message'>${input}</div>`;
             document.getElementById('userInput').value = '';
             loader.style.display = 'block';
@@ -133,25 +87,25 @@
             chatBox.innerHTML += `<div class='chat-message bot-message'>${responseText}</div>`;
             chatBox.scrollTop = chatBox.scrollHeight;
         }
-        
+
         async function getEcommerceResponse(query) {
-            if (["hi", "hello", "hey", "good morning", "good evening"].includes(query.toLowerCase())) {
-                return "👋 Hello! How can I assist you today? 😊";
-            }
-            if (query.toLowerCase().includes("track my order")) {
-                return "📦 Please provide your order ID to check the status.";
-            } else if (query.toLowerCase().includes("best deals")) {
-                return "🔥 Here are today's best deals!";
-            } else {
-                return "🤖 I'm still learning! Can you rephrase your question?";
-            }
+            const greetings = ["hi", "hello", "hey", "good morning", "good evening"];
+            if (greetings.includes(query.toLowerCase())) return "👋 Hello! How can I assist you today? 😊";
+            if (query.toLowerCase().includes("track my order")) return "📦 Please provide your order ID to check the status.";
+            if (query.toLowerCase().includes("best deals")) return "🔥 Here are today's best deals!";
+            if (query.toLowerCase().includes("latest products")) return "🆕 Check out our latest arrivals!";
+            if (query.toLowerCase().includes("recommend")) return getRecommendedProducts();
+            return "I'm not sure, but I can help you find the best products!";
         }
-        
+
+        function getRecommendedProducts() {
+            return "🛍️ Here are some product recommendations:<br>1️⃣ Smart Watch ⌚ - $99.99<br>2️⃣ Wireless Earbuds 🎧 - $49.99<br>3️⃣ Gaming Mouse 🖱️ - $39.99<br>4️⃣ Portable Speaker 🔊 - $79.99";
+        }
+
         function startVoiceRecognition() {
             const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-            recognition.lang = 'en-US';
+            recognition.lang = "en-US";
             recognition.start();
-            
             recognition.onresult = function(event) {
                 const voiceText = event.results[0][0].transcript;
                 document.getElementById("userInput").value = voiceText;
